@@ -12,7 +12,12 @@ export const addStore = async (req, res) => {
       throw new Error("User with id=1 not found");
     }
 
-    const store = await Store.create({ name, email, address, ownerId });
+    const store = await Store.create({
+      name,
+      email,
+      address,
+      ownerId: user.id,
+    });
 
     sendResponse(res, "true", "add the store by admin", store, 200);
   } catch (error) {
